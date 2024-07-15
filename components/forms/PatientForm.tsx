@@ -4,18 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form } from "../ui/form";
-import { Button } from "../ui/button";
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { useState } from "react";
 import { UserFormValidation } from "@/lib/validation";
 import { useRouter } from "next/navigation";
-
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-});
+import { createUser } from "@/lib/actions/patients.actions";
 
 const PatientForm = () => {
   const router = useRouter();
@@ -29,21 +23,23 @@ const PatientForm = () => {
     },
   });
 
-  function onSubmit({
+  async function onSubmit({
     name,
     email,
     phone,
   }: z.infer<typeof UserFormValidation>) {
     setisLoading(true);
     try {
-      // const userData = {
-      //   name,
-      //   email,
-      //   phone,
-      // };
-      // const user =  await createUser(userData);
-      // if(user) router.push(`/patients/${user.$id}/register`)
-    } catch (error) {}
+      const userData = {
+        name,
+        email,
+        phone,
+      };
+      const user = await createUser(userData);
+      if (user) router.push(`/patients/${user.$id}/register`);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
