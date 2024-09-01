@@ -13,7 +13,7 @@ export default function Home({ searchParams }: SearchParamProps) {
         <div className="max-w-[496px] sub-container">
           {/* Replace logo */}
           <Image
-            src="/assets/icons/logo-full.svg"
+            src="/assets/icons/logo-icon.svg"
             alt="logo"
             height={1000}
             width={1000}

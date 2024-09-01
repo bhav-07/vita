@@ -12,7 +12,7 @@ const Register = async ({ params: { userId } }: SearchParamProps) => {
         <div className="max-w-[860px] flex-1 flex flex-col py-10 sub-container">
           {/* Replace logo */}
           <Image
-            src="/assets/icons/logo-full.svg"
+            src="/assets/icons/logo-icon.svg"
             alt="logo"
             height={1000}
             width={1000}
